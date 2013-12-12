@@ -17,22 +17,32 @@ class LinkedList
   def add_item(payload)
     lli = LinkedListItem.new(payload)
 
+    @head = lli if @count == 0
+
     @current_item.next_list_item = lli if @current_item
     @current_item = lli
-
-    @head = lli if @count == 0
 
     @count += 1
   end
 
-  def get(index)
+  def get(index, get_list_item=false)
     raise IndexError if index < 0
     raise IndexError if index >= @count
     tmp = @head
     index.times do
       tmp = tmp.next_list_item
     end
-    tmp.payload
+    return tmp.payload unless get_list_item
+    return tmp
+  end
+
+  def [](index)
+    get(index)
+  end
+
+  def []=(index, payload)
+    tmp = get(index, true)
+    tmp.payload = payload
   end
 
   def size
@@ -43,4 +53,17 @@ class LinkedList
     @current_item.payload if @current_item
   end
 
+  def to_s
+    return "| |" if @count == 0
+
+    list_items = "| "
+    i = 0
+    while (i < @count)
+      list_items = list_items + get(i)
+      list_items = list_items + ', ' if i != @count-1
+      i += 1
+    end
+
+    list_items = list_items + " |"
+  end
 end
