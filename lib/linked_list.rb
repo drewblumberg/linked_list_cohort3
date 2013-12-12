@@ -39,4 +39,8 @@ class LinkedList
     @count
   end
 
+  def last
+    @current_item.payload if @current_item
+  end
+
 end
