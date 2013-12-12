@@ -2,15 +2,20 @@ require 'linked_list_item'
 
 class LinkedList
 
-  def initialize
+  def initialize(*args)
     @count = 0
     @head = nil
     @current_item = nil
+
+    if(args)
+      args.each do |list_item|
+        add_item(list_item)
+      end
+    end
   end
 
   def add_item(payload)
     lli = LinkedListItem.new(payload)
-    lli.next_list_item = nil
 
     @current_item.next_list_item = lli if @current_item
     @current_item = lli
@@ -21,6 +26,7 @@ class LinkedList
   end
 
   def get(index)
+    raise IndexError if index < 0
     tmp = @head
     index.times do
       tmp = tmp.next_list_item
