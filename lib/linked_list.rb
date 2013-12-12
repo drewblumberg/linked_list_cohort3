@@ -16,11 +16,23 @@ class LinkedListItem
   end
 
   def >(linked_list_item)
-    self.payload.to_s > linked_list_item.payload.to_s ? true : false
+    if (self.payload.class == Symbol and linked_list_item.payload.class != Symbol) or (self.payload.class != Symbol and linked_list_item.payload.class == Symbol)
+      self.payload.class == Symbol ? true : false
+    elsif (self.payload.class == Fixnum or linked_list_item.payload.class == Fixnum) or (self.payload.class != Fixnum and linked_list_item.payload.class == Fixnum)
+      self.payload.class == Fixnum ? false : true
+    else
+      self.payload > linked_list_item.payload ? true : false
+    end
   end
 
   def <(linked_list_item)
-    self.payload.to_s < linked_list_item.payload.to_s ? true : false
+    if (self.payload.class == Symbol and linked_list_item.payload.class != Symbol) or (self.payload.class != Symbol and linked_list_item.payload.class == Symbol)
+      self.payload.class == Symbol ? false : true
+    elsif (self.payload.class == Fixnum and linked_list_item.payload.class != Fixnum) or (self.payload.class != Fixnum and linked_list_item.payload.class == Fixnum)
+      self.payload.class == Fixnum ? true : false
+    else
+      self.payload < linked_list_item.payload ? true : false
+    end
   end
 
   def ===(linked_list_item)
@@ -28,6 +40,6 @@ class LinkedListItem
   end
 
   def ==(linked_list_item)
-    self.payload.to_s == linked_list_item.payload.to_s ? true : false
+    self.payload == linked_list_item.payload ? true : false
   end
 end
