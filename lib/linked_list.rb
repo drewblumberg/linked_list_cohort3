@@ -27,6 +27,7 @@ class LinkedList
 
   def get(index)
     raise IndexError if index < 0
+    raise IndexError if index >= @count
     tmp = @head
     index.times do
       tmp = tmp.next_list_item
