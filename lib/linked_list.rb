@@ -35,4 +35,8 @@ class LinkedList
     tmp.payload
   end
 
+  def size
+    @count
+  end
+
 end
