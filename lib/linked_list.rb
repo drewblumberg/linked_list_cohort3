@@ -36,8 +36,8 @@ class LinkedList
     return tmp
   end
 
-  def [](index)
-    get(index)
+  def [](index, get_list_item=false)
+    get_list_item ? get(index, true) : get(index, false)
   end
 
   def []=(index, payload)
@@ -65,5 +65,11 @@ class LinkedList
     end
 
     list_items = list_items + " |"
+  end
+
+  def remove(index)
+    self[index] = nil
+    @head = self[1, true] if index == 0
+    @count -= 1
   end
 end
