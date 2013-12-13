@@ -82,12 +82,25 @@ class LinkedList
 
   def indexOf(payload)
     i = 0
-    while i < @count do
+    while i < @count
       found = true if self[i] == payload
       break if found
       i += 1
     end
 
     return i if found
+  end
+
+  def sorted?
+    return true if @count < 2
+
+    i = 0
+    while i < (@count-1)
+      break if (self[i, true] > self[i+1, true])
+      i += 1
+    end
+
+    return true if i == (@count-1)
+    return false
   end
 end
