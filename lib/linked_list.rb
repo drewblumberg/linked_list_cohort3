@@ -69,7 +69,14 @@ class LinkedList
 
   def remove(index)
     self[index] = nil
+
+    if (index > 0 and index < (@count-1))
+      prev = self[index-1, true]
+      prev.next_list_item = self[index+1, true]
+    end
+
     @head = self[1, true] if index == 0
+
     @count -= 1
   end
 end
