@@ -91,6 +91,10 @@ class LinkedList
     return i if found
   end
 
+  def sort
+    return self if @count < 2
+  end
+
   def sorted?
     return true if @count < 2
 
