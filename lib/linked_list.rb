@@ -79,4 +79,15 @@ class LinkedList
 
     @count -= 1
   end
+
+  def indexOf(payload)
+    i = 0
+    while i < @count do
+      found = true if self[i] == payload
+      break if found
+      i += 1
+    end
+
+    return i if found
+  end
 end
